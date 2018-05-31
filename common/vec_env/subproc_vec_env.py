@@ -12,6 +12,13 @@ from common import common
 
 
 def worker(remote, map_name, nscripts, i):
+  import sys
+  from absl import flags
+  FLAGS = flags.FLAGS
+  try:
+    FLAGS(sys.argv)
+  except:
+    pass
 
   with sc2_env.SC2Env(
       map_name=map_name,
