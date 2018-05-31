@@ -8,6 +8,7 @@ import zipfile
 from absl import flags
 
 import baselines.common.tf_util as U
+import baselines.deepq.utils as DeepqUtils
 
 from baselines import logger
 from baselines.common.schedules import LinearSchedule
@@ -190,7 +191,7 @@ def learn(env,
   sess.__enter__()
 
   def make_obs_ph(name):
-    return U.BatchInput((16, 16), name=name)
+    return DeepqUtils.Uint8Input((16, 16), name=name)
 
   act_x, train_x, update_target_x, debug_x = deepq.build_train(
     make_obs_ph=make_obs_ph,

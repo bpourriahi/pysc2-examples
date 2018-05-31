@@ -10,6 +10,8 @@ from pysc2.lib import actions
 from pysc2.lib import actions as sc2_actions
 from pysc2.lib import features
 
+import baselines.deepq.utils as DeepqUtils
+
 import deepq_mineral_shards
 
 _PLAYER_RELATIVE = features.SCREEN_FEATURES.player_relative.index
@@ -43,7 +45,7 @@ def main():
       dueling=True)
 
     def make_obs_ph(name):
-      return U.BatchInput((64, 64), name=name)
+      return DeepqUtils.Uint8Input((16, 16), name=name)
 
     act_params = {
       'make_obs_ph': make_obs_ph,
